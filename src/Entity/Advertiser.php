@@ -9,7 +9,7 @@ namespace Drupal\advertiser\Entity;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\advertiser\AdvertiserInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
  * Defines the Advertiser entity.
@@ -26,7 +26,7 @@ use Drupal\advertiser\AdvertiserInterface;
  *   },
  * )
  */
-class Advertiser extends ContentEntityBase implements AdvertiserInterface
+class Advertiser extends ContentEntityBase implements ContentEntityInterface 
 {
     public static function baseFieldDefinitions(EntityTypeInterface $entity_type)
     {
