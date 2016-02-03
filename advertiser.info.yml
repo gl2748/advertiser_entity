@@ -1,0 +1,5 @@
+name: Advertiser
+type: module
+description: 'Barebones advertiser entity'
+package: custom
+core: 8.x
