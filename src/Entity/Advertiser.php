@@ -14,7 +14,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 /**
  * Defines the Advertiser entity.
  *
- * @ingroup advertiser 
+ * @ingroup advertiser
  *
  * @ContentEntityType(
  *   id = "advertiser",
@@ -26,20 +26,20 @@ use Drupal\Core\Entity\ContentEntityInterface;
  *   },
  * )
  */
-class Advertiser extends ContentEntityBase implements ContentEntityInterface 
-{
-    public static function baseFieldDefinitions(EntityTypeInterface $entity_type)
-    {
-        // Standard field, used as unique if primary index.
-        $fields['id'] = BaseFieldDefinition::create('integer')
-            ->setLabel(t('ID'))
-            ->setDescription(t('The ID of the Advertiser entity.'))
-            ->setReadOnly(true);
- 
-        $fields['name'] = BaseFieldDefinition::create('string')
-            ->setLabel(t("The advertiser's name"))
-            ->setDescription(t('The name of the advertiser.'));
-        
-        return $fields;
-    }
+class Advertiser extends ContentEntityBase implements ContentEntityInterface {
+  /**
+   *
+   */
+  public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+    // Standard field, used as unique if primary index.
+    $fields['id'] = BaseFieldDefinition::create('integer')
+        ->setLabel(t('ID'))
+        ->setDescription(t('The ID of the Advertiser entity.'))
+        ->setReadOnly(TRUE);
+    $fields['name'] = BaseFieldDefinition::create('string')
+        ->setLabel(t("The advertiser's name"))
+        ->setDescription(t('The name of the advertiser.'));
+    return $fields;
+  }
+
 }
