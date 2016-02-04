@@ -32,16 +32,6 @@ class AdvertiserTest extends KernelTestBase {
   }
 
   /**
-   * Gets storage interface for our entity.
-   *
-   * @return \Drupal\Core\Entity\EntityStorageInterface
-   *   A storage interface.
-   */
-  protected function getStorage() {
-    return \Drupal::entityManager()->getStorage('advertiser');
-  }
-
-  /**
    * Saves an advertiser & make sure values are properly set.
    */
   public function testSaveAdvertiser() {
