@@ -31,6 +31,6 @@ git clone https://github.com/gl2748/advertiser_entity advertiser
 cd ..
 php core/scripts/run-tests.sh --module advertiser
 ```
-
-
->>>>>>> 28cbd1668ff24b056d17b557277478e4a53e6f34
+### Helpful hints
+*  Tests run from scratch - hence no need for `drush pm-uninstall advertiser; drush en advertiser` (altough you may want to do that after changing your entity).
+*  Tests don't give verbose output, figure things out in the cli with something like - `drush php-eval '$entity = \Drupal\advertiser\Entity\Advertiser::create(); print($entity->uuid()."\n"); $entity->save();`
