@@ -48,10 +48,21 @@ class AdvertiserTest extends KernelTestBase {
     // Get the id.
     $id = $entity->id();
 
+    // Get the uuid.
+    $uuid = $entity->uuid();
+
     // Load the saved entity.
     $saved_entity = Advertiser::load($id);
 
+    // Check label
     $this->assertEquals($label, $saved_entity->label());
+
+    // Check UUID
+    $this->assertEquals($uuid, $saved_entity->uuid());
+    
+    // Check the string length of uuid is 36.
+    $this->assertEquals(strlen($saved_entity->uuid()), 36);
+
   }
 
 }
