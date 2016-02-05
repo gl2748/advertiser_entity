@@ -4,6 +4,13 @@
  * Contains \Drupal\advertiser\Entity\Advertiser.
  */
 
+/**
+ * Defines the Entity's namespace.
+ *
+ * For example with this namespace try:
+ * drush php-eval '$entity = \Drupal\advertiser\Entity\Advertiser::create(); $entity->save();'.
+ */
+
 namespace Drupal\advertiser\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
@@ -22,13 +29,14 @@ use Drupal\Core\Entity\ContentEntityInterface;
  *   base_table = "advertiser",
  *   entity_keys = {
  *     "id" = "id",
- *     "label" = "name"
+ *     "label" = "name",
+ *     "uuid" = "uuid"
  *   },
  * )
  */
 class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   /**
-   *
+   * Define .
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     // Standard field, used as unique if primary index.
@@ -36,9 +44,18 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
         ->setLabel(t('ID'))
         ->setDescription(t('The ID of the Advertiser entity.'))
         ->setReadOnly(TRUE);
+
+    // Standard field, unique outside of the scope of the current project.
+    $fields['uuid'] = BaseFieldDefinition::create('uuid')
+      ->setLabel(t('UUID'))
+      ->setDescription(t('The UUID of the Contact entity.'))
+      ->setReadOnly(TRUE);
+
+    // Name field for the advertiser.
     $fields['name'] = BaseFieldDefinition::create('string')
         ->setLabel(t("The advertiser's name"))
         ->setDescription(t('The name of the advertiser.'));
+
     return $fields;
   }
 
