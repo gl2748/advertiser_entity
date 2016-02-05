@@ -55,7 +55,11 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
     $fields['name'] = BaseFieldDefinition::create('string')
         ->setLabel(t("The advertiser's name"))
         ->setDescription(t('The name of the advertiser.'));
-
+        ->setSettings(array(
+            'default_value' => '',
+            'max_length' => 255,
+            'text_processing' =>0,
+        ))
     return $fields;
   }
 
