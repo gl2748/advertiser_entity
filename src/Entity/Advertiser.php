@@ -78,4 +78,11 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
     return $fields;
   }
 
+  /**
+   * Get the website.
+   */
+  public function website() {
+    return $this->get('website')->get(0)->get('value')->getValue();
+  }
+
 }
