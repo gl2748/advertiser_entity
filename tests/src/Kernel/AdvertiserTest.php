@@ -92,8 +92,7 @@ class AdvertiserTest extends KernelTestBase {
     $this->assertEquals($uuid, $saved_entity->uuid());
 
     // Check the string length of uuid is 36.
-    $standard_uuid_length = 36;
-    $this->assertEquals(strlen($uuid), $standard_uuid_length);
+    $this->assertEquals(strlen($uuid), 36);
   }
 
   /**
@@ -102,7 +101,6 @@ class AdvertiserTest extends KernelTestBase {
   public function testAdvertiserURL() {
 
     $website = 'www.helloeveryone.org';
-    $label = 'test content';
 
     // Create an entity.
     $entity = Advertiser::create([
@@ -120,7 +118,7 @@ class AdvertiserTest extends KernelTestBase {
     $saved_entity = Advertiser::load($id);
 
     // Get the website address from the website field.
-   // $weburl = $saved_entity->website();
+    //$weburl = $saved_entity->website();
 
     // Check the website field .
    // $this->assertEquals($website, $weburl);

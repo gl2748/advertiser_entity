@@ -21,9 +21,6 @@ use Drupal\Core\Entity\ContentEntityInterface;
 /**
  * Defines the Advertiser entity.
  *
- * Warning - although in a comment - the following 
- * DEFINES THE ENTITY!
- *
  * @ingroup advertiser
  *
  * @ContentEntityType(
@@ -38,7 +35,9 @@ use Drupal\Core\Entity\ContentEntityInterface;
  * )
  */
 class Advertiser extends ContentEntityBase implements ContentEntityInterface {
-  /**
+   /**
+   * {@inheritdoc}
+   *
    * The baseFieldDefinitions determine the schema for the base_table property of the entity 
    * (defined above).
    */
