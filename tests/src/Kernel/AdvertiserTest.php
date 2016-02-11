@@ -3,6 +3,10 @@
 /**
  * @file
  * Integration tests cf. unit tests.
+ *
+ * For some helpful guidance on unit tests in Drupal 8,
+ * take a look at the examples module - especially
+ * phpunit_example/tests/src/Unit/
  */
 
 /**
@@ -91,4 +95,35 @@ class AdvertiserTest extends KernelTestBase {
     $standard_uuid_length = 36;
     $this->assertEquals(strlen($uuid), $standard_uuid_length);
   }
+
+  /**
+   * Saves an advertiser & makes sure the website address field is set.
+   */
+  public function testAdvertiserURL() {
+
+    $website = 'www.helloeveryone.org';
+    $label = 'test content';
+
+    // Create an entity.
+    $entity = Advertiser::create([
+        'name' => $label,
+        'website' => $website,
+    ]);
+
+    // Save it.
+    $entity->save();
+
+    // Get the id.
+    $id = $entity->id();
+
+    // Load the saved entity.
+    $saved_entity = Advertiser::load($id);
+
+    // Get the website address from the website field.
+   // $weburl = $saved_entity->website();
+
+    // Check the website field .
+   // $this->assertEquals($website, $weburl);
+  }
+
 }

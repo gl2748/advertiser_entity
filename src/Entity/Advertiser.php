@@ -21,6 +21,9 @@ use Drupal\Core\Entity\ContentEntityInterface;
 /**
  * Defines the Advertiser entity.
  *
+ * Warning - although in a comment - the following 
+ * DEFINES THE ENTITY!
+ *
  * @ingroup advertiser
  *
  * @ContentEntityType(
@@ -30,13 +33,14 @@ use Drupal\Core\Entity\ContentEntityInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "name",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
  *   },
  * )
  */
 class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   /**
-   * Define .
+   * The baseFieldDefinitions determine the schema for the base_table property of the entity 
+   * (defined above).
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     // Standard field, used as unique if primary index.
@@ -60,6 +64,17 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
             'max_length' => 255,
             'text_processing' =>0,
         ));
+
+    // Website field for the advertiser.
+    $fields['website'] = BaseFieldDefinition::create('string')
+        ->setLabel(t("The advertiser's website"))
+        ->setDescription(t('The website address of the advertiser.'))
+        ->setSettings(array(
+            'default_value' => '',
+            'max_length' => 255,
+            'text_processing' =>0,
+        ));
+
     return $fields;
   }
 
