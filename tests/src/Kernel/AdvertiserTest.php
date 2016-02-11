@@ -1,6 +1,9 @@
 <?php
 
-//integration tests cf. unit tests
+/**
+ * @file
+ * Integration tests cf. unit tests.
+ */
 
 /**
  * @file
@@ -88,5 +91,4 @@ class AdvertiserTest extends KernelTestBase {
     $standard_uuid_length = 36;
     $this->assertEquals(strlen($uuid), $standard_uuid_length);
   }
-
 }
