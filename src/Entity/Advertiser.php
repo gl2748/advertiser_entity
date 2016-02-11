@@ -4,13 +4,6 @@
  * Contains \Drupal\advertiser\Entity\Advertiser.
  */
 
-/**
- * Defines the Entity's namespace.
- *
- * For example with this namespace try:
- * drush php-eval '$entity = \Drupal\advertiser\Entity\Advertiser::create(); $entity->save();'.
- */
-
 namespace Drupal\advertiser\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
@@ -39,8 +32,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
  */
 class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   /**
-   * The baseFieldDefinitions determine the schema for the base_table property of the entity
-   * (defined above).
+   * Determines the schema for the base_table property defined above.
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     // Standard field, used as unique if primary index.
