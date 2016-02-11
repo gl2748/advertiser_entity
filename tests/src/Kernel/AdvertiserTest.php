@@ -1,5 +1,7 @@
 <?php
 
+//integration tests cf. unit tests
+
 /**
  * @file
  * Contains \Drupal\Tests\advertiser\Kernel\AdvertiserTest.
@@ -18,12 +20,12 @@ use \Drupal\advertiser\Entity\Advertiser;
 class AdvertiserTest extends KernelTestBase {
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   public static $modules = ['advertiser', 'system'];
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   protected function setUp() {
     parent::setUp();
@@ -48,21 +50,43 @@ class AdvertiserTest extends KernelTestBase {
     // Get the id.
     $id = $entity->id();
 
+    // Load the saved entity.
+    $saved_entity = Advertiser::load($id);
+
+    // Check label.
+    $this->assertEquals($label, $saved_entity->label());
+
+  }
+
+  /**
+   * Saves an advertiser & makes sure the uuid is set.
+   */
+  public function testAdvertiserUUID() {
+    $label = 'Random Test Content';
+
+    // Create an entity.
+    $entity = Advertiser::create([
+      'name' => $label,
+    ]);
+
+    // Save it.
+    $entity->save();
+
     // Get the uuid.
     $uuid = $entity->uuid();
+
+    // Get the id.
+    $id = $entity->id();
 
     // Load the saved entity.
     $saved_entity = Advertiser::load($id);
 
-    // Check label
-    $this->assertEquals($label, $saved_entity->label());
-
-    // Check UUID
+    // Check UUID.
     $this->assertEquals($uuid, $saved_entity->uuid());
-    
-    // Check the string length of uuid is 36.
-    $this->assertEquals(strlen($saved_entity->uuid()), 36);
 
+    // Check the string length of uuid is 36.
+    $standard_uuid_length = 36;
+    $this->assertEquals(strlen($uuid), $standard_uuid_length);
   }
 
 }
