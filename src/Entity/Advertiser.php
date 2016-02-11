@@ -4,13 +4,6 @@
  * Contains \Drupal\advertiser\Entity\Advertiser.
  */
 
-/**
- * Defines the Entity's namespace.
- *
- * For example with this namespace try:
- * drush php-eval '$entity = \Drupal\advertiser\Entity\Advertiser::create(); $entity->save();'.
- */
-
 namespace Drupal\advertiser\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
@@ -35,11 +28,8 @@ use Drupal\Core\Entity\ContentEntityInterface;
  * )
  */
 class Advertiser extends ContentEntityBase implements ContentEntityInterface {
-   /**
-   * {@inheritdoc}
-   *
-   * The baseFieldDefinitions determine the schema for the base_table property of the entity 
-   * (defined above).
+  /**
+   * Determines the schema for the base_table property defined above.
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     // Standard field, used as unique if primary index.
@@ -59,9 +49,9 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
         ->setLabel(t("The advertiser's name"))
         ->setDescription(t('The name of the advertiser.'))
         ->setSettings(array(
-            'default_value' => '',
-            'max_length' => 255,
-            'text_processing' =>0,
+          'default_value' => '',
+          'max_length' => 255,
+          'text_processing' => 0,
         ));
 
     // Website field for the advertiser.
@@ -69,12 +59,19 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
         ->setLabel(t("The advertiser's website"))
         ->setDescription(t('The website address of the advertiser.'))
         ->setSettings(array(
-            'default_value' => '',
-            'max_length' => 255,
-            'text_processing' =>0,
+          'default_value' => '',
+          'max_length' => 255,
+          'text_processing' => 0,
         ));
 
     return $fields;
+  }
+
+  /**
+   * Get the website.
+   */
+  public function website() {
+    return $this->get('website')->get(0)->get('value')->getValue();
   }
 
 }
