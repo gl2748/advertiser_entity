@@ -27,12 +27,12 @@ use \Drupal\advertiser\Entity\Advertiser;
 class AdvertiserTest extends KernelTestBase {
 
   /**
-   * {@inheritDoc}.
+   * {@inheritDoc}
    */
   public static $modules = ['advertiser', 'system'];
 
   /**
-   * {@inheritDoc}.
+   * {@inheritDoc}
    */
   protected function setUp() {
     parent::setUp();
@@ -68,7 +68,7 @@ class AdvertiserTest extends KernelTestBase {
   /**
    * Saves an advertiser & makes sure the uuid is set.
    */
-  public function testAdvertiserUUID() {
+  public function testAdvertiserUuid() {
     $label = 'Random Test Content';
 
     // Create an entity.
@@ -99,15 +99,15 @@ class AdvertiserTest extends KernelTestBase {
   /**
    * Saves an advertiser & makes sure the website address field is set.
    */
-  public function testAdvertiserURL() {
+  public function testAdvertiserUrl() {
 
     $website = 'www.helloeveryone.org';
     $label = 'test content';
 
     // Create an entity.
     $entity = Advertiser::create([
-        'name' => $label,
-        'website' => $website,
+      'name' => $label,
+      'website' => $website,
     ]);
 
     // Save it.
@@ -120,10 +120,10 @@ class AdvertiserTest extends KernelTestBase {
     $saved_entity = Advertiser::load($id);
 
     // Get the website address from the website field.
-   // $weburl = $saved_entity->website();
+    $weburl = $saved_entity->website();
 
     // Check the website field .
-   // $this->assertEquals($website, $weburl);
+    $this->assertEquals($website, $weburl);
   }
 
 }
