@@ -106,8 +106,8 @@ class AdvertiserTest extends KernelTestBase {
 
     // Create an entity.
     $entity = Advertiser::create([
-        'name' => $label,
-        'website' => $website,
+      'name' => $label,
+      'website' => $website,
     ]);
 
     // Save it.
