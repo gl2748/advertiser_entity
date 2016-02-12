@@ -129,5 +129,13 @@ class AdvertiserTest extends KernelTestBase {
     // Check the website field matches.
     $this->assertEquals($website, $weburl);
   }
+  /**
+   * Saves an advertiser & checks the image field is set.
+   */
+  public function testAdvertiserImage() {
+    
+    $imageSrc  = file_unmanaged_copy('https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150', 'public://destination.jpg', FILE_EXISTS_REPLACE);
+
+  }
 
 }
