@@ -10,6 +10,7 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 
 /**
  * Defines the Advertiser entity.
@@ -28,6 +29,40 @@ use Drupal\Core\Entity\ContentEntityInterface;
  * )
  */
 class Advertiser extends ContentEntityBase implements ContentEntityInterface {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getWebsite() {
+    return $this->get('website')->get(0)->get('value')->getValue();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function preCreate(EntityStorageInterface $storage, array &$values) {
+    $values += array(
+      'link' => '',
+      'description' => '',
+      'image' => '',
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getImage() {
+    return $this->get('image')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setImage($image) {
+    $this->set('image', $image);
+    return $this;
+  }
+
   /**
    * Determines the schema for the base_table property defined above.
    */
@@ -65,16 +100,11 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
         ));
 
     // Logo image field for the advertiser.
-    
+    $fields['image'] = BaseFieldDefinition::create('uri')
+      ->setLabel(t('Image'))
+      ->setDescription(t('An image representing the feed.'));
 
     return $fields;
-  }
-
-  /**
-   * Get the website.
-   */
-  public function website() {
-    return $this->get('website')->get(0)->get('value')->getValue();
   }
 
 }
