@@ -40,17 +40,6 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   /**
    * {@inheritdoc}
    */
-  public static function preCreate(EntityStorageInterface $storage, array &$values) {
-    $values += array(
-      'link' => '',
-      'description' => '',
-      'image' => '',
-    );
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getImage() {
     return $this->get('advertiser_image')->value;
   }
