@@ -47,7 +47,7 @@ class AdvertiserTest extends KernelTestBase {
     // Create an entity.
     $entity = Advertiser::create(
           [
-            'name' => $label,
+            'advertiser_name' => $label,
           ]
       );
 
@@ -75,7 +75,7 @@ class AdvertiserTest extends KernelTestBase {
     // Create an entity.
     $entity = Advertiser::create(
           [
-            'name' => $label,
+            'advertiser_name' => $label,
           ]
       );
 
@@ -109,8 +109,8 @@ class AdvertiserTest extends KernelTestBase {
     // Create an entity.
     $entity = Advertiser::create(
           [
-            'name' => $label,
-            'website' => $website,
+            'advertiser_name' => $label,
+            'advertiser_website' => $website,
           ]
       );
 
@@ -133,8 +133,15 @@ class AdvertiserTest extends KernelTestBase {
    * Saves an advertiser & checks the image field is set.
    */
   public function testAdvertiserImage() {
-    
+
     $imageSrc  = file_unmanaged_copy('https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150', 'public://destination.jpg', FILE_EXISTS_REPLACE);
+    
+    // Create an entity.
+    $entity = Advertiser::create(
+          [
+            'advertiser_image' => $imageSrc,
+          ]
+      );
 
   }
 

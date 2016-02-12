@@ -23,7 +23,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
  *   base_table = "advertiser",
  *   entity_keys = {
  *     "id" = "id",
- *     "label" = "name",
+ *     "label" = "advertiser_name",
  *     "uuid" = "uuid",
  *   },
  * )
@@ -34,7 +34,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
    * {@inheritdoc}
    */
   public function getWebsite() {
-    return $this->get('website')->get(0)->get('value')->getValue();
+    return $this->get('advertiser_website')->get(0)->get('value')->getValue();
   }
 
   /**
@@ -52,14 +52,14 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
    * {@inheritdoc}
    */
   public function getImage() {
-    return $this->get('image')->value;
+    return $this->get('advertiser_image')->value;
   }
 
   /**
    * {@inheritdoc}
    */
   public function setImage($image) {
-    $this->set('image', $image);
+    $this->set('advertiser_image', $image);
     return $this;
   }
 
@@ -80,7 +80,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
       ->setReadOnly(TRUE);
 
     // Name field for the advertiser.
-    $fields['name'] = BaseFieldDefinition::create('string')
+    $fields['advertiser_name'] = BaseFieldDefinition::create('string')
         ->setLabel(t("The advertiser's name"))
         ->setDescription(t('The name of the advertiser.'))
         ->setSettings(array(
@@ -90,7 +90,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
         ));
 
     // Website field for the advertiser.
-    $fields['website'] = BaseFieldDefinition::create('string')
+    $fields['advertiser_website'] = BaseFieldDefinition::create('string')
         ->setLabel(t("The advertiser's website"))
         ->setDescription(t('The website address of the advertiser.'))
         ->setSettings(array(
@@ -100,7 +100,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
         ));
 
     // Logo image field for the advertiser.
-    $fields['image'] = BaseFieldDefinition::create('uri')
+    $fields['advertiser_image'] = BaseFieldDefinition::create('uri')
       ->setLabel(t('Image'))
       ->setDescription(t('An image representing the feed.'));
 
