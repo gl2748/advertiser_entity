@@ -124,7 +124,7 @@ class AdvertiserTest extends KernelTestBase {
     $saved_entity = Advertiser::load($id);
 
     // Get the website address from the website field using the getWebsite method.
-    $weburl = $saved_entity - getWebsite();
+    $weburl = $saved_entity->getWebsite();
 
     // Check the website field matches.
     $this->assertEquals($website, $weburl);
