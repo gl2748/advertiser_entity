@@ -123,7 +123,7 @@ class AdvertiserTest extends KernelTestBase {
     // Load the saved entity.
     $saved_entity = Advertiser::load($id);
 
-    // Get the website address from the website field using the getWebsite method.
+    // Get the website address from the website.
     $weburl = $saved_entity->getWebsite();
 
     // Check the website field matches.
@@ -134,14 +134,28 @@ class AdvertiserTest extends KernelTestBase {
    */
   public function testAdvertiserImage() {
 
-    $imageSrc  = file_unmanaged_copy('https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150', 'public://destination.jpg', FILE_EXISTS_REPLACE);
-    
+    $image_src  = file_unmanaged_copy('https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150', 'public://destination.jpg', FILE_EXISTS_REPLACE);
+
     // Create an entity.
     $entity = Advertiser::create(
           [
-            'advertiser_image' => $imageSrc,
+            'advertiser_image' => $image_src,
           ]
       );
+    // Save it.
+    $entity->save();
+
+    // Get the id.
+    $id = $entity->id();
+
+    // Load the saved entity.
+    $saved_entity = Advertiser::load($id);
+
+    // Get the imageUri from the entity's image field using the getImage method.
+    $image_uri = $saved_entity->getImage();
+
+    // Check the imageUri field matches.
+    $this->assertEquals($image_src, $image_uri);
 
   }
 
