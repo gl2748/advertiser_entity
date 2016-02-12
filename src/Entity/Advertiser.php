@@ -64,6 +64,9 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
           'text_processing' => 0,
         ));
 
+    // Logo image field for the advertiser.
+    
+
     return $fields;
   }
 
