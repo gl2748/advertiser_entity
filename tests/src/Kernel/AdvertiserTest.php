@@ -2,11 +2,7 @@
 
 /**
  * @file
- * Integration tests cf. unit tests.
- *
- * For some helpful guidance on unit tests in Drupal 8,
- * take a look at the examples module - especially
- * phpunit_example/tests/src/Unit/
+ * Unit tests for the Advertiser Entity.
  */
 
 /**
@@ -27,14 +23,15 @@ use \Drupal\advertiser\Entity\Advertiser;
 class AdvertiserTest extends KernelTestBase {
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   public static $modules = ['advertiser', 'system'];
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   protected function setUp() {
+
     parent::setUp();
 
     $this->installEntitySchema('advertiser');
@@ -44,12 +41,15 @@ class AdvertiserTest extends KernelTestBase {
    * Saves an advertiser & make sure values are properly set.
    */
   public function testSaveAdvertiser() {
+
     $label = 'ADM: Supermarket to the World';
 
     // Create an entity.
-    $entity = Advertiser::create([
-      'name' => $label,
-    ]);
+    $entity = Advertiser::create(
+          [
+            'name' => $label,
+          ]
+      );
 
     // Save it.
     $entity->save();
@@ -69,12 +69,15 @@ class AdvertiserTest extends KernelTestBase {
    * Saves an advertiser & makes sure the uuid is set.
    */
   public function testAdvertiserUuid() {
+
     $label = 'Random Test Content';
 
     // Create an entity.
-    $entity = Advertiser::create([
-      'name' => $label,
-    ]);
+    $entity = Advertiser::create(
+          [
+            'name' => $label,
+          ]
+      );
 
     // Save it.
     $entity->save();
@@ -104,10 +107,12 @@ class AdvertiserTest extends KernelTestBase {
     $label = 'random label';
 
     // Create an entity.
-    $entity = Advertiser::create([
-      'name' => $label,
-      'website' => $website,
-    ]);
+    $entity = Advertiser::create(
+          [
+            'name' => $label,
+            'website' => $website,
+          ]
+      );
 
     // Save it.
     $entity->save();
@@ -118,12 +123,12 @@ class AdvertiserTest extends KernelTestBase {
     // Load the saved entity.
     $saved_entity = Advertiser::load($id);
 
-    // Get the website address from the website field.
-    $weburl = $saved_entity->get('website')->get(0)->get('value')->getValue();
+    // Get the website address from the website field using the website method
+    // ddefined in our advertiser class.
+    $weburl = $saved_entity->website();
 
-    // Check the website field .
+    // Check the website field matches.
     $this->assertEquals($website, $weburl);
   }
 
 }
-
