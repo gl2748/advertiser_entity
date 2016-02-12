@@ -101,6 +101,7 @@ class AdvertiserTest extends KernelTestBase {
   public function testAdvertiserUrl() {
 
     $website = 'www.helloeveryone.org';
+    $label = 'random label';
 
     // Create an entity.
     $entity = Advertiser::create([
@@ -118,10 +119,11 @@ class AdvertiserTest extends KernelTestBase {
     $saved_entity = Advertiser::load($id);
 
     // Get the website address from the website field.
-    $weburl = $saved_entity->website();
+    $weburl = $saved_entity->get('website')->get(0)->get('value')->getValue();
 
     // Check the website field .
     $this->assertEquals($website, $weburl);
   }
 
 }
+
