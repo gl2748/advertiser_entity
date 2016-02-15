@@ -12,8 +12,7 @@
 
 namespace Drupal\Tests\advertiser\Kernel;
 
-use Drupal\KernelTests\KernelTestBase;
-
+use \Drupal\KernelTests\KernelTestBase;
 use \Drupal\advertiser\Entity\Advertiser;
 
 /**
@@ -134,14 +133,22 @@ class AdvertiserTest extends KernelTestBase {
    */
   public function testAdvertiserImage() {
 
-    $image_src  = file_unmanaged_copy('https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150', 'public://destination.jpg', FILE_EXISTS_REPLACE);
+    // Create file object from remote URL.
+    $data = file_get_contents('https://www.drupal.org/sites/all/modules/drupalorg/drupalorg/images/qmark-400x684-2x.png');
+
+    // Download file locally.
+    $image_file = file_save_data($data, 'temporary://qmark-400x684-2x.png', FILE_EXISTS_REPLACE);
+
+    // Use the getFileUri method from:
+    // https://api.drupal.org/api/drupal/core!modules!file!src!Entity!File.php/class/File/8
+    $image_file_uri = $image_file->getFileUri();
 
     // Create an entity.
     $entity = Advertiser::create(
-          [
-            'advertiser_image' => $image_src,
-          ]
-      );
+        [
+          'advertiser_image' => $image_file_uri,
+        ]
+    );
     // Save it.
     $entity->save();
 
@@ -155,7 +162,7 @@ class AdvertiserTest extends KernelTestBase {
     $image_uri = $saved_entity->getImage();
 
     // Check the imageUri field matches.
-    $this->assertEquals($image_src, $image_uri);
+    $this->assertEquals($image_file_uri, $image_uri);
 
   }
 
