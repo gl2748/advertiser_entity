@@ -14,6 +14,7 @@ namespace Drupal\Tests\advertiser\Kernel;
 
 use \Drupal\KernelTests\KernelTestBase;
 use \Drupal\advertiser\Entity\Advertiser;
+use \Drupal\file\Entity\File;
 
 /**
  * @coversDefaultClass \Drupal\advertiser\Entity\Advertiser
