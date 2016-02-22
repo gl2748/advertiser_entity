@@ -75,6 +75,21 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function getPasscode() {
+    return $this->get('feed_passcode')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPasscode($passcode) {
+    $this->get('feed_passcode')->value = $passcode;
+    return $this;
+  }
+
+  /**
    * Determines the schema for the base_table property defined above.
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
@@ -119,6 +134,11 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
     $fields['advertiser_email'] = BaseFieldDefinition::create('email')
       ->setLabel(t('Email'))
       ->setDescription(t('The email of this advertiser.'));
+
+    // Feed Passcode field for the advertiser.
+    $fields['feed_passcode'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Feed Passcode'))
+      ->setDescription(t('The feed passcode for this advertiser.'));
 
     return $fields;
   }

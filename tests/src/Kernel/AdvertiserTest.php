@@ -196,5 +196,34 @@ class AdvertiserTest extends KernelTestBase {
     // Check the website field matches.
     $this->assertEquals($email, $advertiser_email);
   }
+  
+  /**
+   * Saves an advertiser & makes sure the passcode field is set.
+   */
+  public function testAdvertiserPasscode() {
 
+    $passcode = '1231131';
+
+    // Create an entity.
+    $entity = Advertiser::create(
+          [
+            'feed_passcode' => $passcode,
+          ]
+      );
+
+    // Save it.
+    $entity->save();
+
+    // Get the id.
+    $id = $entity->id();
+
+    // Load the saved entity.
+    $saved_entity = Advertiser::load($id);
+
+    // Get the website address from the website.
+    $advertiser_passcode = $saved_entity->getPasscode();
+
+    // Check the website field matches.
+    $this->assertEquals($passcode, $advertiser_passcode);
+  }
 }
