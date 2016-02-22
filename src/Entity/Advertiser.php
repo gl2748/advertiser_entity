@@ -10,7 +10,6 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
 
 /**
  * Defines the Advertiser entity.
@@ -40,6 +39,14 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   /**
    * {@inheritdoc}
    */
+  public function setWebsite($advertiser_website) {
+    $this->get('advertiser_website')->value = $advertiser_website;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getImage() {
     return $this->get('advertiser_image')->value;
   }
@@ -47,8 +54,38 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   /**
    * {@inheritdoc}
    */
-  public function setImage($image) {
-    $this->set('advertiser_image', $image);
+  public function setImage($advertiser_image) {
+    $this->get('advertiser_image')->value = $advertiser_image;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getBody() {
+    return $this->get('advertiser_body')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setBody($body) {
+    $this->get('advertiser_body')->value = $body;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPasscode() {
+    return $this->get('feed_passcode')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPasscode($passcode) {
+    $this->get('feed_passcode')->value = $passcode;
     return $this;
   }
 
@@ -77,6 +114,16 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
           'max_length' => 255,
           'text_processing' => 0,
         ));
+
+    // Body field for the advertiser.
+    $fields['advertiser_body'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Body'))
+      ->setDescription(t('A descriptive blurb for the advertiser.'))
+      ->setSettings(array(
+        'default_value' => '',
+        'max_length' => 255,
+        'text_processing' => 0,
+      ));
 
     // Website field for the advertiser.
     $fields['advertiser_website'] = BaseFieldDefinition::create('string')
