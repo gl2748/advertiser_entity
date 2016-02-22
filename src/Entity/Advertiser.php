@@ -77,6 +77,21 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   /**
    * {@inheritdoc}
    */
+  public function getBody() {
+    return $this->get('advertiser_body')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setBody($body) {
+    $this->get('advertiser_body')->value = $body;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getPasscode() {
     return $this->get('feed_passcode')->value;
   }
@@ -114,6 +129,16 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
           'max_length' => 255,
           'text_processing' => 0,
         ));
+
+    // Body field for the advertiser.
+    $fields['advertiser_body'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Body'))
+      ->setDescription(t('A descriptive blurb for the advertiser.'))
+      ->setSettings(array(
+        'default_value' => '',
+        'max_length' => 255,
+        'text_processing' => 0,
+      ));
 
     // Website field for the advertiser.
     $fields['advertiser_website'] = BaseFieldDefinition::create('string')

@@ -3,7 +3,8 @@
 /**
  * @file
  * Unit tests for the Advertiser Entity.
- * Neet intro: https://api.drupal.org/api/drupal/core!core.api.php/group/testing/8.
+ *
+ * Intro: https://api.drupal.org/api/drupal/core!core.api.php/group/testing/8.
  */
 
 /**
@@ -15,7 +16,6 @@ namespace Drupal\Tests\advertiser\Kernel;
 
 use \Drupal\KernelTests\KernelTestBase;
 use \Drupal\advertiser\Entity\Advertiser;
-use \Drupal\file\Entity\File;
 
 /**
  * @coversDefaultClass \Drupal\advertiser\Entity\Advertiser
@@ -165,7 +165,7 @@ class AdvertiserTest extends KernelTestBase {
   // Check the imageUri field matches.
   $this->assertEquals($image_file_uri, $image_uri);
   }
-  */
+   */
 
   /**
    * Saves an advertiser & makes sure the email address field is set.
@@ -196,4 +196,34 @@ class AdvertiserTest extends KernelTestBase {
     // Check the website field matches.
     $this->assertEquals($email, $advertiser_email);
   }
+  /**
+   * Saves an advertiser & makes sure the body field is set.
+   */
+  public function testAdvertiserBody() {
+
+    $body = 'A reasonably long chunk of text representing a description of this particular advertiser. A bit like the blurb on the back of a book.';
+
+    // Create an entity.
+    $entity = Advertiser::create(
+          [
+            'advertiser_body' => $body,
+          ]
+      );
+
+    // Save it.
+    $entity->save();
+
+    // Get the id.
+    $id = $entity->id();
+
+    // Load the saved entity.
+    $saved_entity = Advertiser::load($id);
+
+    // Get the website address from the website.
+    $advertiser_body = $saved_entity->getBody();
+
+    // Check the website field matches.
+    $this->assertEquals($body, $advertiser_body);
+  }
+
 }
