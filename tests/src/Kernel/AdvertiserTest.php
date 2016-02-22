@@ -3,6 +3,7 @@
 /**
  * @file
  * Unit tests for the Advertiser Entity.
+ * Neet intro: https://api.drupal.org/api/drupal/core!core.api.php/group/testing/8.
  */
 
 /**
@@ -22,7 +23,9 @@ use \Drupal\advertiser\Entity\Advertiser;
 class AdvertiserTest extends KernelTestBase {
 
   /**
-   * {@inheritDoc}.
+   * Modules to enable.
+   *
+   * @var array
    */
   public static $modules = ['advertiser', 'system'];
 
@@ -69,7 +72,7 @@ class AdvertiserTest extends KernelTestBase {
    */
   public function testAdvertiserUuid() {
 
-    $label = 'Random Test Content';
+    $label = 'This is Test Content';
 
     // Create an entity.
     $entity = Advertiser::create(
@@ -103,7 +106,7 @@ class AdvertiserTest extends KernelTestBase {
   public function testAdvertiserUrl() {
 
     $website = 'www.helloeveryone.org';
-    $label = 'random label';
+    $label = 'not-so-random label';
 
     // Create an entity.
     $entity = Advertiser::create(
@@ -131,24 +134,52 @@ class AdvertiserTest extends KernelTestBase {
   /**
    * Saves an advertiser & checks the image field is set.
    */
+
+  /*
   public function testAdvertiserImage() {
 
-    // Create file object from remote URL.
-    $data = file_get_contents('https://www.drupal.org/sites/all/modules/drupalorg/drupalorg/images/qmark-400x684-2x.png');
+  //Download an example image from the internet.
+  $test_data = file_get_contents('https://www.drupal.org/sites/all/modules/drupalorg/drupalorg/images/qmark-400x684-2x.png');
+  //Save the file to the temporary scheme.
+  $image_file = file_save_data($test_data, 'temporary://test_test_test.png', file_exists_replace);
+  $image_file_uri = $image_file->getFileUri();
+  // Create an entity.
+  $entity = Advertiser::create(
+  [
+  'advertiser_image' => $image_file_uri,
+  ]
+  );
+  // Save it.
+  $entity->save();
 
-    // Download file locally.
-    $image_file = file_save_data($data, 'temporary://qmark-400x684-2x.png', FILE_EXISTS_REPLACE);
+  // Get the id.
+  $id = $entity->id();
 
-    // Use the getFileUri method from:
-    // https://api.drupal.org/api/drupal/core!modules!file!src!Entity!File.php/class/File/8
-    $image_file_uri = $image_file->getFileUri();
+  // Load the saved entity.
+  $saved_entity = Advertiser::load($id);
+
+  // Get the imageUri from the entity's image field using the getImage method defined in our entity.
+  $image_uri = $saved_entity->getImage();
+
+  // Check the imageUri field matches.
+  $this->assertEquals($image_file_uri, $image_uri);
+  }
+  */
+
+  /**
+   * Saves an advertiser & makes sure the email address field is set.
+   */
+  public function testAdvertiserEmail() {
+
+    $email = 'realestate@notreal.com';
 
     // Create an entity.
     $entity = Advertiser::create(
-        [
-          'advertiser_image' => $image_file_uri,
-        ]
-    );
+          [
+            'advertiser_email' => $email,
+          ]
+      );
+
     // Save it.
     $entity->save();
 
@@ -158,12 +189,11 @@ class AdvertiserTest extends KernelTestBase {
     // Load the saved entity.
     $saved_entity = Advertiser::load($id);
 
-    // Get the imageUri from the entity's image field using the getImage method.
-    $image_uri = $saved_entity->getImage();
+    // Get the website address from the website.
+    $advertiser_email = $saved_entity->getEmail();
 
-    // Check the imageUri field matches.
-    $this->assertEquals($image_file_uri, $image_uri);
-
+    // Check the website field matches.
+    $this->assertEquals($email, $advertiser_email);
   }
 
 }

@@ -63,7 +63,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
    * {@inheritdoc}
    */
   public function getEmail() {
-    return $this->get('mail')->value;
+    return $this->get('advertiser_email')->value;
   }
 
   /**
@@ -116,13 +116,9 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
       ->setDescription(t('An image representing the feed.'));
 
     // Email field for the advertiser.
-    $fields['mail'] = BaseFieldDefinition::create('email')
+    $fields['advertiser_email'] = BaseFieldDefinition::create('email')
       ->setLabel(t('Email'))
-      ->setDescription(t('The email of this user.'))
-      ->setDefaultValue('')
-      ->addConstraint('UserMailUnique')
-      ->addConstraint('UserMailRequired')
-      ->addConstraint('ProtectedUserField');
+      ->setDescription(t('The email of this advertiser.'));
 
     return $fields;
   }
