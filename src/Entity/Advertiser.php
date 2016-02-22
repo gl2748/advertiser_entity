@@ -10,7 +10,6 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
 
 /**
  * Defines the Advertiser entity.
@@ -76,7 +75,6 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
-
    * Determines the schema for the base_table property defined above.
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
@@ -116,7 +114,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
     $fields['advertiser_image'] = BaseFieldDefinition::create('uri')
       ->setLabel(t('Image'))
       ->setDescription(t('An image representing the feed.'));
-    
+
     // Email field for the advertiser.
     $fields['mail'] = BaseFieldDefinition::create('email')
       ->setLabel(t('Email'))
