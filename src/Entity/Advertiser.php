@@ -70,7 +70,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
    * {@inheritdoc}
    */
   public function setEmail($mail) {
-    $this->get('mail')->value = $mail;
+    $this->get('advertiser_email')->value = $mail;
     return $this;
   }
 
