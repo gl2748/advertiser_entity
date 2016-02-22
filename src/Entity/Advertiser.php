@@ -40,11 +40,43 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   /**
    * {@inheritdoc}
    */
+  public function setWebsite($advertiser_website) {
+    $this->get('advertiser_website')->value = $advertiser_website;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getImage() {
     return $this->get('advertiser_image')->value;
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function setImage($advertiser_image) {
+    $this->get('advertiser_image')->value = $advertiser_image;
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getEmail() {
+    return $this->get('mail')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setEmail($mail) {
+    $this->get('mail')->value = $mail;
+    return $this;
+  }
+
+  /**
+
    * Determines the schema for the base_table property defined above.
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
