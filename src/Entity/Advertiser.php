@@ -135,11 +135,6 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
       ->setLabel(t('Email'))
       ->setDescription(t('The email of this advertiser.'));
 
-    // Feed Passcode field for the advertiser.
-    $fields['feed_passcode'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Feed Passcode'))
-      ->setDescription(t('The feed passcode for this advertiser.'));
-
     return $fields;
   }
 
