@@ -31,7 +31,6 @@ class AdvertiserTest extends KernelTestBase {
    * {@inheritDoc}.
    */
   protected function setUp() {
-
     parent::setUp();
 
     $this->installEntitySchema('advertiser');
@@ -41,15 +40,12 @@ class AdvertiserTest extends KernelTestBase {
    * Saves an advertiser & make sure values are properly set.
    */
   public function testSaveAdvertiser() {
-
     $label = 'ADM: Supermarket to the World';
 
     // Create an entity.
-    $entity = Advertiser::create(
-          [
-            'advertiser_name' => $label,
-          ]
-      );
+    $entity = Advertiser::create([
+      'advertiser_name' => $label,
+    ]);
 
     // Save it.
     $entity->save();
@@ -62,22 +58,18 @@ class AdvertiserTest extends KernelTestBase {
 
     // Check label.
     $this->assertEquals($label, $saved_entity->label());
-
   }
 
   /**
    * Saves an advertiser & makes sure the uuid is set.
    */
   public function testAdvertiserUuid() {
-
     $label = 'Random Test Content';
 
     // Create an entity.
-    $entity = Advertiser::create(
-          [
-            'advertiser_name' => $label,
-          ]
-      );
+    $entity = Advertiser::create([
+      'advertiser_name' => $label,
+    ]);
 
     // Save it.
     $entity->save();
@@ -102,17 +94,14 @@ class AdvertiserTest extends KernelTestBase {
    * Saves an advertiser & makes sure the website address field is set.
    */
   public function testAdvertiserUrl() {
-
     $website = 'www.helloeveryone.org';
     $label = 'random label';
 
     // Create an entity.
-    $entity = Advertiser::create(
-          [
-            'advertiser_name' => $label,
-            'advertiser_website' => $website,
-          ]
-      );
+    $entity = Advertiser::create([
+      'advertiser_name' => $label,
+      'advertiser_website' => $website,
+    ]);
 
     // Save it.
     $entity->save();
@@ -129,11 +118,11 @@ class AdvertiserTest extends KernelTestBase {
     // Check the website field matches.
     $this->assertEquals($website, $weburl);
   }
+
   /**
    * Saves an advertiser & checks the image field is set.
    */
   public function testAdvertiserImage() {
-
     // Create file object from remote URL.
     $data = file_get_contents('https://www.drupal.org/sites/all/modules/drupalorg/drupalorg/images/qmark-400x684-2x.png');
 
@@ -145,11 +134,10 @@ class AdvertiserTest extends KernelTestBase {
     $image_file_uri = $image_file->getFileUri();
 
     // Create an entity.
-    $entity = Advertiser::create(
-        [
-          'advertiser_image' => $image_file_uri,
-        ]
-    );
+    $entity = Advertiser::create([
+      'advertiser_image' => $image_file_uri,
+    ]);
+
     // Save it.
     $entity->save();
 
