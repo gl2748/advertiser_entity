@@ -12,20 +12,22 @@
 
 namespace Drupal\Tests\advertiser\Kernel;
 
-use \Drupal\KernelTests\KernelTestBase;
-use \Drupal\advertiser\Entity\Advertiser;
+use \Drupal\file\Tests\FileManagedUnitTestBase;
+
 use \Drupal\file\Entity\File;
+
+use \Drupal\advertiser\Entity\Advertiser;
 
 /**
  * @coversDefaultClass \Drupal\advertiser\Entity\Advertiser
  * @group advertiser
  */
-class AdvertiserTest extends KernelTestBase {
+class AdvertiserTest extends FileManagedUnitTestBase {
 
   /**
    * {@inheritDoc}.
    */
-  public static $modules = ['advertiser', 'system'];
+  public static $modules = ['advertiser', 'file', 'system'];
 
   /**
    * {@inheritDoc}.
@@ -57,7 +59,7 @@ class AdvertiserTest extends KernelTestBase {
     $saved_entity = Advertiser::load($id);
 
     // Check label.
-    $this->assertEquals($label, $saved_entity->label());
+    $this->assertEqual($label, $saved_entity->label(), 'Label created successfully');
   }
 
   /**
@@ -84,10 +86,10 @@ class AdvertiserTest extends KernelTestBase {
     $saved_entity = Advertiser::load($id);
 
     // Check UUID.
-    $this->assertEquals($uuid, $saved_entity->uuid());
+    $this->assertEqual($uuid, $saved_entity->uuid(), 'UUID created successfully');
 
     // Check the string length of uuid is 36.
-    $this->assertEquals(strlen($uuid), 36);
+    $this->assertEqual(strlen($uuid), 36, 'UUID length is 36');
   }
 
   /**
@@ -116,7 +118,7 @@ class AdvertiserTest extends KernelTestBase {
     $weburl = $saved_entity->getWebsite();
 
     // Check the website field matches.
-    $this->assertEquals($website, $weburl);
+    $this->assertEqual($website, $weburl, 'Website field saved');
   }
 
   /**
@@ -151,8 +153,7 @@ class AdvertiserTest extends KernelTestBase {
     $image_uri = $saved_entity->getImage();
 
     // Check the imageUri field matches.
-    $this->assertEquals($image_file_uri, $image_uri);
-
+    $this->assertEqual($image_file_uri, $image_uri, 'Image saved');
   }
 
 }
