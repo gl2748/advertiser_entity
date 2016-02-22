@@ -45,14 +45,6 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function setImage($image) {
-    $this->set('advertiser_image', $image);
-    return $this;
-  }
-
-  /**
    * Determines the schema for the base_table property defined above.
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
