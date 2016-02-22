@@ -116,6 +116,15 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
     $fields['advertiser_image'] = BaseFieldDefinition::create('uri')
       ->setLabel(t('Image'))
       ->setDescription(t('An image representing the feed.'));
+    
+    // Email field for the advertiser.
+    $fields['mail'] = BaseFieldDefinition::create('email')
+      ->setLabel(t('Email'))
+      ->setDescription(t('The email of this user.'))
+      ->setDefaultValue('')
+      ->addConstraint('UserMailUnique')
+      ->addConstraint('UserMailRequired')
+      ->addConstraint('ProtectedUserField');
 
     return $fields;
   }
