@@ -7,13 +7,14 @@
 
 namespace Drupal\Tests\advertiser\Kernel;
 
-use Drupal\Core\Entity\EntityInterface;
 use \Drupal\KernelTests\KernelTestBase;
 use \Drupal\advertiser\Entity\Advertiser;
 
 /**
  * Verify that advertiser validity checks behave as designed.
+ *
  * @coversDefaultClass \Drupal\advertiser\Entity\Advertiser
+ *
  * @group advertiser
  */
 class AdvertiserValidationTest extends KernelTestBase {
@@ -34,13 +35,10 @@ class AdvertiserValidationTest extends KernelTestBase {
     $this->installEntitySchema('advertiser');
   }
 
+  /**
+   * Runs entity validation checks.
+   */
   public function testAdvertiserUrls() {
-    //If - Given a failing url.
-      //The validator should fail.
-      //Set message 'the validator failed as expected'.
-    //Else - Given a correct url.
-      //The validator should pass.
-      //Set message 'the validator passed as expected'.
     $entity = Advertiser::create([
       'advertiser_website' => 'www.testing.com',
     ]);
@@ -52,11 +50,11 @@ class AdvertiserValidationTest extends KernelTestBase {
     $longurl = "http://" . $longstring . ".com";
     $advertiser->set('advertiser_website', $longurl);
     $violations = $advertiser->validate();
-    
+
     $this->assertEqual(count($violations), 1, 'Violation found when url is too long.');
     $this->assertEqual($violations[0]->getPropertyPath(), 'advertiser_website');
     $this->assertEqual($violations[0]->getMessage(), t('The url %longurl is too long: it must be %max characters or less.', array('%longurl' => $longurl, '%max' => 2083)));
-    */
+     */
   }
 
 }
