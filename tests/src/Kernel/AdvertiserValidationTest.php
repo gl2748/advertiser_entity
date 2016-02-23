@@ -52,8 +52,6 @@ class AdvertiserValidationTest extends KernelTestBase {
     $advertiser->set('advertiser_website', $longurl);
     $violations = $advertiser->validate();
     $this->assertEqual(count($violations), 1, 'Violation found when url is too long.');
-    $this->assertEqual($violations[0]->getPropertyPath(), 'advertiser_website');
-    $this->assertEqual($violations[0]->getMessage(), t('The url %longurl is too long: it must be %max characters or less.', array('%longurl' => $longurl, '%max' => 2083)));
   }
 
 }
