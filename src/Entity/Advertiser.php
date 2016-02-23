@@ -75,21 +75,6 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function getPasscode() {
-    return $this->get('feed_passcode')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setPasscode($passcode) {
-    $this->get('feed_passcode')->value = $passcode;
-    return $this;
-  }
-
-  /**
    * Determines the schema for the base_table property defined above.
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
