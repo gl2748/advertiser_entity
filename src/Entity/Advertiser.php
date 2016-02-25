@@ -116,10 +116,11 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
         ->setDescription(t('The website address of the advertiser.'))
         ->setSettings(array(
           'default_value' => '',
-          'max_length' => 2,
+          'max_length' => 2083,
           'text_processing' => 0,
         ))
         ->addPropertyConstraints('value', ['Url' => []]);
+
     // Logo image field for the advertiser.
     $fields['advertiser_image'] = BaseFieldDefinition::create('uri')
       ->setLabel(t('Image'))
