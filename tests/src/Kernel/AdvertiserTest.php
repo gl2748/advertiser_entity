@@ -15,9 +15,7 @@
 namespace Drupal\Tests\advertiser\Kernel;
 
 use \Drupal\file\Tests\FileManagedUnitTestBase;
-
 use \Drupal\file\Entity\File;
-
 use \Drupal\advertiser\Entity\Advertiser;
 
 /**
