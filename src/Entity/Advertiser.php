@@ -119,6 +119,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
           'max_length' => 2083,
           'text_processing' => 0,
         ))
+    // https://drupalwatchdog.com/volume-5/issue-2/introducing-drupal-8s-entity-validation-api
         ->addPropertyConstraints('value', ['Url' => []]);
 
     // Logo image field for the advertiser.
