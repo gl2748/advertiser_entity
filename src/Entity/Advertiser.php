@@ -30,14 +30,14 @@ use Drupal\Core\Entity\ContentEntityInterface;
 class Advertiser extends ContentEntityBase implements ContentEntityInterface {
 
   /**
-   * {@inheritdoc}
+   * Gets the value for the advertiser_website field of an advertiser entity.
    */
   public function getWebsite() {
     return $this->get('advertiser_website')->get(0)->get('value')->getValue();
   }
 
   /**
-   * {@inheritdoc}
+   * Sets the value for the advertiser_website field of an advertiser entity.
    */
   public function setWebsite($advertiser_website) {
     $this->get('advertiser_website')->value = $advertiser_website;
@@ -45,14 +45,14 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
-   * {@inheritdoc}
+   * Gets the value for the advertiser_image field of an advertiser entity.
    */
   public function getImage() {
     return $this->get('advertiser_image')->value;
   }
 
   /**
-   * {@inheritdoc}
+   * Sets the value for the advertiser_image field of an advertiser entity.
    */
   public function setImage($advertiser_image) {
     $this->get('advertiser_image')->value = $advertiser_image;
@@ -60,14 +60,14 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
   }
 
   /**
-   * {@inheritdoc}
+   * Gets the value for the advertiser_body field of an advertiser entity.
    */
   public function getBody() {
     return $this->get('advertiser_body')->value;
   }
 
   /**
-   * {@inheritdoc}
+   * Sets the value for the body field of an advertiser entity.
    */
   public function setBody($body) {
     $this->get('advertiser_body')->value = $body;
