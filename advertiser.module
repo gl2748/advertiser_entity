@@ -1,0 +1,12 @@
+<?php
+
+use Drupal\group\Entity\Group;
+
+
+function _advertiser_show_adding_to_group() {
+  // Make sure you have added an Advertiser and a Group
+  $ad = \Drupal\advertiser\Entity\Advertiser::load(1);
+  $group = Group::load(1);
+
+  $group->addContent($ad, 'advertiser:advertiser');
+}
