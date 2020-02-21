@@ -87,7 +87,7 @@ class Advertiser extends ContentEntityBase implements ContentEntityInterface {
     // Standard field, unique outside of the scope of the current project.
     $fields['uuid'] = BaseFieldDefinition::create('uuid')
       ->setLabel(t('UUID'))
-      ->setDescription(t('The UUID of the Contact entity.'))
+      ->setDescription(t('The UUID of the Advertiser entity.'))
       ->setReadOnly(TRUE);
 
     // Name field for the advertiser.
